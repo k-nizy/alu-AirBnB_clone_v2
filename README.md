@@ -18,7 +18,7 @@ This repository covers:
 - Understand the difference between file-based and database storage
 - Master Python packaging and module organization
 
-## 🛠️ Technologies & Tools
+##  Technologies & Tools
 
 - **Language**: Python 3.8+
 - **Web Framework**: Flask
