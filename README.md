@@ -1,6 +1,6 @@
 # AirBnB Clone - MySQL, Deployment & Web Framework
 
-## 📋 Project Description
+## Project Description
 
 This project is a complete web application that integrates database storage, backend API, and server-side rendering. It's part of a comprehensive full-stack development curriculum, focusing on building an AirBnB clone with MySQL database integration, deployment automation, and a Flask web framework.
 
@@ -9,7 +9,7 @@ This repository covers:
 - **Part 4**: Web Static Deployment
 - **Part 5**: Web Framework (Flask)
 
-## 🎯 Learning Objectives
+##  Learning Objectives
 
 - Implement Object-Relational Mapping (ORM) with SQLAlchemy
 - Manage MySQL databases for development and testing environments
@@ -28,7 +28,7 @@ This repository covers:
 - **Testing**: unittest
 - **Style**: PEP 8 (pycodestyle)
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 .
@@ -57,7 +57,7 @@ This repository covers:
 └── 3-deploy_web_static.py    # Full deployment pipeline
 ```
 
-## 💾 Database Schema
+##  Database Schema
 
 The application uses a relational database with the following models:
 
@@ -68,7 +68,7 @@ The application uses a relational database with the following models:
 - **Amenity**: Property amenities
 - **Review**: User reviews (linked to Place and User)
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -119,7 +119,7 @@ python3 -m web_flask.0-hello_route
 # Access at http://0.0.0.0:5000/
 ```
 
-## 🧪 Testing
+##  Testing
 
 Run the test suite:
 
@@ -134,7 +134,7 @@ python3 -m unittest tests/test_models/test_base_model.py
 HBNB_ENV=test HBNB_TYPE_STORAGE=db python3 -m unittest discover tests
 ```
 
-## 📦 Deployment
+##  Deployment
 
 Deploy static content to production servers:
 
@@ -146,7 +146,7 @@ python3 1-pack_web_static.py
 python3 3-deploy_web_static.py
 ```
 
-## 📝 Console Commands
+##  Console Commands
 
 The command-line interface supports:
 
@@ -166,24 +166,24 @@ The command-line interface supports:
 (hbnb) update User user-id email "newemail@example.com"
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 Toggle between storage engines using environment variables:
 
 - **File Storage**: Default mode, stores data in JSON file
 - **Database Storage**: Set `HBNB_TYPE_STORAGE=db` for MySQL
 
-## 📚 Key Features
+##  Key Features
 
-✅ Dual storage system (File & Database)  
-✅ SQLAlchemy ORM integration  
-✅ RESTful routing with Flask  
-✅ Jinja2 templating engine  
-✅ Automated deployment scripts  
-✅ Comprehensive unit testing  
-✅ PEP 8 compliant code  
+ Dual storage system (File & Database)  
+ SQLAlchemy ORM integration  
+ RESTful routing with Flask  
+ Jinja2 templating engine  
+ Automated deployment scripts  
+ Comprehensive unit testing  
+ PEP 8 compliant code  
 
-## 🤝 Contributing
+##  Contributing
 
 This is an educational project. For contributions:
 
@@ -193,16 +193,9 @@ This is an educational project. For contributions:
 4. Ensure all tests pass
 5. Submit a pull request
 
-## 📄 License
 
-This project is part of the ALU Software Engineering curriculum.
-
-## 👤 Author
+##  Author
 
 **Kevin Nizeyimana**
 - GitHub: [@k-nizy](https://github.com/k-nizy)
-- Project: ALU AirBnB Clone v2
-
----
-
-*This project is part of the ALU Higher Level Programming curriculum, focusing on full-stack web development with Python.*
+  
