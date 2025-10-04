@@ -16,12 +16,15 @@ def do_pack():
     try:
         # Create versions folder if it doesn't exist
         if not os.path.exists("versions"):
-            local("mkdir -p versions")  
+            local("mkdir -p versions")
+        
         # Create timestamp for archive name
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         archive_name = "versions/web_static_{}.tgz".format(timestamp)
+        
         # Create the tar archive
         local("tar -cvzf {} web_static".format(archive_name))
+        
         # Check if archive was created successfully
         if os.path.exists(archive_name):
             return archive_name
