@@ -32,7 +32,7 @@ def do_deploy(archive_path):
         run('sudo mkdir -p {}'.format(folder_path))
 
         # Uncompress archive to target directory
-        run('sudo tar -xzf /tmp/{} -C {}'.format(archive_filenam, folder_path))
+        run('sudo tar -xzf /tmp/{} -C {}'.format(archive_filename, folder_path))
 
         # Remove archive from /tmp/
         run('sudo rm /tmp/{}'.format(archive_filename))
