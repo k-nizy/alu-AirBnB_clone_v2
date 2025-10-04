@@ -20,12 +20,9 @@ def do_pack():
     try:
         if not os.path.exists("versions"):
             local("mkdir -p versions")
-        
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         archive_name = "versions/web_static_{}.tgz".format(timestamp)
-        
         local("tar -cvzf {} web_static".format(archive_name))
-        
         if os.path.exists(archive_name):
             return archive_name
         else:
@@ -50,7 +47,7 @@ def do_deploy(archive_path):
 
         run('sudo mkdir -p {}'.format(folder_path))
         run('sudo tar -xzf /tmp/{} -C {}'.format(archive_filename, folder_path))
-        run('sudo rm /tmp/{}'.format(archive_filename))
+        run('sudo rm /tmp/{}'.format(archie_filename))
         run('sudo mv {}web_static/* {}'.format(folder_path, folder_path))
         run('sudo rm -rf {}web_static'.format(folder_path))
         run('sudo rm -rf /data/web_static/current')
@@ -70,15 +67,12 @@ def deploy():
     """
     # Pack the web_static content
     archive_path = do_pack()
-    
     if archive_path is None:
         print("Packing failed!")
         return False
-    
     print("web_static packed: {} -> {}Bytes".format(
         archive_path, 
         os.path.getsize(archive_path) if os.path.exists(archive_path) else 0
     ))
-    
     # Deploy the archive
     return do_deploy(archive_path)
