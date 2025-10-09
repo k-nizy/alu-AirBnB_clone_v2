@@ -42,14 +42,15 @@ def do_deploy(archive_path):
         # Delete the archive from the web server
         run('rm /tmp/{}'.format(file_name))
         
-        # Move contents from web_static subdirectory to release directory
-        run('mv /data/web_static/releases/{}/web_static/* '
-            ' /data/web_static/releases/{}/'.format(
-            file_name_noext, file_name_noext))
-        
-        # Remove the now-empty web_static subdirectory
-        run('rm -rf /data/web_static/releases/{}/web_static'.format(
-            file_name_noext))
+        # Move contents from web_static subdirectory to release directory (if it exists)
+        if run('test -d /data/web_static/releases/{}/web_static'.format(file_name_noext)).succeeded:
+            run('mv /data/web_static/releases/{}/web_static/* '
+                ' /data/web_static/releases/{}/'.format(
+                file_name_noext, file_name_noext))
+            
+            # Remove the now-empty web_static subdirectory
+            run('rm -rf /data/web_static/releases/{}/web_static'.format(
+                file_name_noext))
         
         # Delete the current symbolic link
         run('rm -rf /data/web_static/current')
