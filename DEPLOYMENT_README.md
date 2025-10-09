@@ -1,20 +1,11 @@
 # AirBnB Clone v2 - Deployment Documentation
 
-## 📋 Project Overview
+##  Project Overview
 
 This project implements automated deployment of the AirBnB web_static content to web servers using Fabric and Docker.
 
-## 🎯 Learning Objectives
 
-- ✅ What is Fabric and how to use it
-- ✅ How to deploy code to servers easily  
-- ✅ What is a tgz archive
-- ✅ How to execute Fabric commands locally and remotely
-- ✅ How to transfer files with Fabric
-- ✅ How to manage Nginx configuration
-- ✅ Difference between root and alias in Nginx configuration
-
-## 📁 Project Files
+##  Project Files
 
 ### Required Files (Fabric Deployment)
 
@@ -47,7 +38,7 @@ This project implements automated deployment of the AirBnB web_static content to
 7. **`haproxy.cfg`** - Load balancer configuration
 8. **`fabfile.py`** - Python 3.13 compatible deployment script
 
-## 🚀 Usage
+##  Usage
 
 ### Method 1: Fabric Deployment (Original Assignment)
 
@@ -85,7 +76,7 @@ docker-compose up -d --build
 # - HAProxy Stats: http://localhost:8404/stats
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### Production Architecture (Fabric)
 ```
@@ -120,7 +111,7 @@ Docker Host
 └──────┘ └──────┘
 ```
 
-## 📝 Deployment Process
+##  Deployment Process
 
 ### Step 1: Prepare Servers (One-time setup)
 ```bash
@@ -153,7 +144,7 @@ Process:
 4. Updates `/data/web_static/current` symlink
 5. Nginx serves from new version
 
-## 🧪 Testing
+##  Testing
 
 ### Test Individual Components
 
@@ -178,7 +169,7 @@ The page should display:
 - White body in middle
 - Green footer with "Holberton School" text
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Fabric Compatibility Issues (Python 3.10+)
 
@@ -208,7 +199,7 @@ python fabfile.py deploy -i ~/.ssh/key
 2. Verify Nginx config: `sudo nginx -t`
 3. Restart Nginx: `sudo service nginx restart`
 
-## 📊 Project Structure
+##  Project Structure
 
 ```
 alu-AirBnB_clone_v2/
@@ -230,7 +221,7 @@ alu-AirBnB_clone_v2/
     └── web_static_*.tgz
 ```
 
-## ✅ Checklist
+##  Checklist
 
 - [x] Bash script creates proper directory structure
 - [x] Nginx configured with `alias` directive
@@ -241,7 +232,7 @@ alu-AirBnB_clone_v2/
 - [x] Docker containerization (bonus)
 - [x] Python 3.13 compatibility (bonus)
 
-## 🎓 Key Concepts Demonstrated
+##  Key Concepts Demonstrated
 
 1. **Infrastructure as Code** - Automated server setup
 2. **Continuous Deployment** - Scripted deployment process
@@ -250,17 +241,6 @@ alu-AirBnB_clone_v2/
 5. **Version Control** - Timestamped releases
 6. **Zero-Downtime Deployment** - Symbolic link switching
 
-## 👤 Author
-
-**Arnold Manzi**
-- GitHub: [@Manziine](https://github.com/Manziine)
-- Project: ALU Software Engineering Program
-
-## 📅 Project Timeline
-
-- **Created:** October 2025
-- **Technologies:** Python, Fabric, Docker, Nginx, HAProxy
-- **Status:** ✅ Complete
 
 ---
 
