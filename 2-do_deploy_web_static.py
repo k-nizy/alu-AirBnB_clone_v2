@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """Fabric Script that distributes an archives"""
 
-
 from fabric.api import put, run, env
 from os.path import exists
 env.hosts = ['54.227.179.101', '3.90.204.71']
-
 
 def do_deploy(archive_path):
     """Archives to web-servers"""
@@ -18,11 +16,16 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/')
         run('mkdir -p {}{}/'.format(path, no_ext))
         run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
-        run('rm /tmp/{}'.format(file_n))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
-        run('rm -rf {}{}/web_static'.format(path, no_ext))
+        run('rm /tmp/{}'.format(file_n))   
+        #  ADD THIS CHECK - Only move if web_static directory exists
+        if run('test -d {}{}/web_static'.format(path, no_ext)).succeeded:
+            run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
+            run('rm -rf {}{}/web_static'.format(path, no_ext))
+        
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
+        print("New version deployed!")
         return True
-    except:
+    except Exception as e:
+        print("Deployment failed: {}".format(str(e)))
         return False
