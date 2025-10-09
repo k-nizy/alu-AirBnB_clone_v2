@@ -1,66 +1,28 @@
 #!/usr/bin/python3
-"""
-Fabric script that distributes an archive to your web servers
-using the function do_deploy
-"""
-from fabric.api import env, run, put
-import os.path
+"""Fabric Script that distributes an archives"""
 
 
-env.hosts = ['34.74.23.57', '35.196.161.89']
+from fabric.api import put, run, env
+from os.path import exists
+env.hosts = ['54.227.179.101', '3.90.204.71']
 
 
 def do_deploy(archive_path):
-    """
-    Distributes an archive to web servers.
-
-    Args:
-        archive_path: Path to the archive file to deploy
-
-    Returns:
-        True if all operations succeed, False otherwise
-    """
-    if not os.path.exists(archive_path):
+    """Archives to web-servers"""
+    if exists(archive_path) is False:
         return False
-    
     try:
-        # Extract filename from path
-        file_name = os.path.basename(archive_path)
-        # Remove .tgz extension to get folder name  
-        file_name_noext = file_name.split('.')[0]
-        
-        # Upload the archive to /tmp/ directory of the web server
-        put(archive_path, '/tmp/{}'.format(file_name))
-        
-        # Create the release directory
-        run('mkdir -p /data/web_static/releases/{}/'.format(file_name_noext))
-        
-        # Uncompress the archive to the release directory
-        run('tar -xzf /tmp/{} -C /data/web_static/releases/{}/'.format(
-            file_name, file_name_noext))
-        
-        # Delete the archive from the web server
-        run('rm /tmp/{}'.format(file_name))
-        
-        # Move contents from web_static subdirectory to release directory (if it exists)
-        if run('test -d /data/web_static/releases/{}/web_static'.format(file_name_noext)).succeeded:
-            run('mv /data/web_static/releases/{}/web_static/* '
-                ' /data/web_static/releases/{}/'.format(
-                file_name_noext, file_name_noext))
-            
-            # Remove the now-empty web_static subdirectory
-            run('rm -rf /data/web_static/releases/{}/web_static'.format(
-                file_name_noext))
-        
-        # Delete the current symbolic link
+        file_n = archive_path.split("/")[-1]
+        no_ext = file_n.split(".")[0]
+        path = "/data/web_static/releases/"
+        put(archive_path, '/tmp/')
+        run('mkdir -p {}{}/'.format(path, no_ext))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
+        run('rm /tmp/{}'.format(file_n))
+        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
+        run('rm -rf {}{}/web_static'.format(path, no_ext))
         run('rm -rf /data/web_static/current')
-        
-        # Create new symbolic link to the new release
-        run('ln -s /data/web_static/releases/{}/ /data/web_static/current'.format(
-            file_name_noext))
-        
-        print("New version deployed!")
+        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
         return True
-        
     except:
         return False
